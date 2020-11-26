@@ -10,7 +10,7 @@ const assertEqual = function(actual, expected) {
 
   } else {
     // print out assertion failed message if actual value does not match expected value
-    console.log(`😡️😡️😡️ Assertion Failed: \"${actual}\" !== \"${expected}\"`);
+    console.log(`😡️😡️😡️ Assertion Failed: "${actual}" !== "${expected}"`);
 
   }
 };

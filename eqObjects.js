@@ -12,20 +12,16 @@ const assertEqual = function(actual, expected) {
     console.log(`😡️😡️😡️ Assertion Failed: "${actual}" !== "${expected}"`);
 
   }
-}; 
+};
 
 
 const eqArrays = function(arrOne, arrTwo) {
 
   // arraysMatch is a boolean used to keep track of if the arrays match (true) or do not match (false)
   let arraysMatch = true;
-  console.log("function entered properly");
-  console.log("the arrOne is", arrOne);
-  console.log("the arrTwo is", arrTwo);
-  // confirm that both arrays are the same length
+
   if (arrOne.length === arrTwo.length) {
-    console.log("same length inside eqArrays");
-    // use a for-loop to iterate through each element in the array and compare the total
+
     for (let i = 0; i < arrOne.length; i++) {
       if (arrOne[i] !== arrTwo[i]) {
        
@@ -37,7 +33,7 @@ const eqArrays = function(arrOne, arrTwo) {
   } else {
     return false;
   }
-  console.log("arraysMatch is:",arraysMatch);
+  
   return arraysMatch;
 };
 
@@ -55,105 +51,61 @@ const eqArrays = function(arrOne, arrTwo) {
 
 // Otherwise return false.
 
-const eqObjects = function (object1, object2){
-  /*
-  // // TEST CASES FOR ARRAYS AS VALUES INSIDE KEYS //
+const eqObjects = function(object1, object2) {
 
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-
-assertEqual(eqObjects(cd,dc),true);
-
-const cd2 = { c: "1", d: ["2", 3, 4] };
-
-assertEqual(eqObjects(cd,cd2),false);
-
-  */
 
   // assume isIdenticalKey is false as a start.
   let isIdenticalKey = false;
   // check if objects are same length. If yes then continue to next logic inside if-statement.
-  if(Object.keys(object1).length !== Object.keys(object2).length){
-    return false;  
+  if (Object.keys(object1).length !== Object.keys(object2).length) {
+    return false;
   }
   // for of-loop to iterate through first object1
-  for(let item in object1){
+  for (let item in object1) {
     // set isIdenticalKey to false for this iteration
-    //isIdenticalKey = false; 
-    //if(Array.isArray(object1[item])){
-      //console.log(`${object1[item]} is an array`);
-    //}
-    // for-of loop to iterate through second object2
-    for(let value in object2){
-
-      if(Array.isArray(object1[item])){  
-          //console.log(`${object1[item]} is an array`);
-
-        if(Array.isArray(object2[value])){
+    isIdenticalKey = false;
+    // for of-loop to iterate through second object2
+    for (let value in object2) {
+      ///////////////////////// if we are searching for an array enter if statement
+      if (Array.isArray(object1[item])) {
+     
+        // check of second objects value is an array as well or not.
+        if (Array.isArray(object2[value])) {
           //console.log(`${object2[value]} both are arrays`);
-          if (eqArrays(object1[item], object2[value])){
-           
-            console.log("eqArrays has been called and a match found");
-            isIdenticalKey = true;
-         // }
+          if (eqArrays(object1[item], object2[value])) {
+            if (item === value) {
+              isIdenticalKey = true;
+            }
           }
         }
-      }
-      if(typeof(object1[item]) === typeof(object2[value])){
-        //console.log("Yippie");
-        // check if both are arrays
-        //--console.log(typeof(object1[item]));
-        //--console.log(typeof(object2[value]));
-        //--console.log("same type");
-       // console.log(`This is the object1[item]: ${object1[item]} .`);
-        /*if(Array.isArray(object1[item])){
-          console.log("item is an array");
-          if(Array.isArray(object2[value])){
-            console.log("value is an array");
-            //if (eqArrays(object1[item], object2[value]) === true){
-            
-              //isIdenticalKey = true;
-            //}
-          
-          } 
-          else {
-            console.log("value is not an array");
+      } else {
+        // check if both elements in object keys are of same type , if yes then proceed
+        if (typeof(object1[item]) === typeof(object2[value])) {
+          // check if keys are same and values are same
+          if (item === value  && object1[item] === object2[value]) {
+            // set isIdenticalKey to true because key match exists (i.e same key with same value in both objects).
+            isIdenticalKey = true;
           }
-          
 
-        } 
-          // if not type array-- check if currrent value(key) in object2 matches item key from object1. Also check if value matches.
-        else {
-          console.log("item is not an array");
-        } */
-        //else if (item === value  && object1[item] === object2[value]){
-          // set isIdenticalKey to true because key match exists (i.e same key with same value in both objects).
-          //isIdenticalKey = true;
-        //}
-      
-      } 
-      else {
-        //--console.log(typeof(object1[item]));
-        //--console.log(typeof(object2[value]));
-        //--console.log("not same type");
+        }
         
       }
-      
+    
     }
-    //
-    if(!isIdenticalKey){
-      //return false;
+    // If object1's matching key and value is not found in the second object (meaning isIdentical is still false), then can return false.
+    if (isIdenticalKey === false) {
+      return false;
     }
 
   }
-
-  //return true;
+  // return true because all keys have matched, objects are equal / have same keys with same values.
+  return true;
 
 };
 
 
 
-/*
+
 
 // TEST CASES FOR PRIMITIVE DATA TYPES FOR VALUES IN KEYS //
 
@@ -167,18 +119,12 @@ const abc = { a: "1", b: "2", c: "3" };
 assertEqual(eqObjects(ab,abc),false);
 
 
-
-//const oneObject = {};
-//const twoObject = {};
-
-//assertEqual(eqObjects(oneObject,twoObject),true);
-
 const anObject = {car: "dodge", model: "2006",city:"Toronto"};
 const anObject2 = {model: "2006", car:"dodge",city: "Toronto"};
 
 assertEqual(eqObjects(anObject,anObject2),true);
 
-*/
+
 
 // // TEST CASES FOR ARRAYS AS VALUES INSIDE KEYS //
 
@@ -189,4 +135,26 @@ assertEqual(eqObjects(cd,dc),true);
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
 
-//assertEqual(eqObjects(cd,cd2),false)
+assertEqual(eqObjects(cd,cd2),false);
+
+const carObject = {car: "dodge", model: "2006",city:"Toronto", made: "can"};
+const carObject2 = {model: "2006", car:"dodge",city: "Toronto"};
+
+assertEqual(eqObjects(carObject,carObject2),false);
+
+
+const cool = { c: "1", d: ["2", 3],e:"yoyo",f:["hello","from","the",3,4] };
+const cool2 = { f:["hello","from","the",3,4], c: "1",d: ["2", 3],e:"yoyo"};
+
+assertEqual(eqObjects(cool,cool2),true);
+
+
+const testOb = { c: "1", d: ["2", 3],e:"yoyo",g:["hello","from","the",3,4] };
+const testOb2 = { c:["hello","from","the",3,4], g: "1",d: ["2", 3],e:"yoyo"};
+
+assertEqual(eqObjects(testOb,testOb2),false);
+
+const cdA = { c: "1", d: ["2", 3] };
+const dcA = { d: ["2", 3], c: 1 };
+
+assertEqual(eqObjects(cdA,dcA),false);
