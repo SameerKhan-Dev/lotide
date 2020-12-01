@@ -104,10 +104,4 @@ assertEqual(objectThree["a"], undefined);
 
 
 
-
-
-
-
-
-
-
+module.exports = countLetters;

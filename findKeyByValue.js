@@ -70,3 +70,5 @@ const bestTVShowsByGenre2 = {
 assertEqual(findKeyByValue(bestTVShowsByGenre2, "Basketball Game"), "drama");
 assertEqual(findKeyByValue(bestTVShowsByGenre2, "Avatar"), "comedy");
 
+
+module.exports = findKeyByValue;

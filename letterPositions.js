@@ -111,3 +111,6 @@ assertArraysEqual(testObjectThree["h"], [0]);
 assertArraysEqual(testObjectThree["e"], [1]);
 assertArraysEqual(testObjectThree["l"], [2,3]);
 assertArraysEqual(testObjectThree["o"], [4]);
+
+
+module.exports = letterPositions;

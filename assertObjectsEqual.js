@@ -174,3 +174,6 @@ const obj8 = {
 // expected for assertion to pass
 assertObjectsEqual(obj7, obj8);
 */
+
+
+module.exports = assertObjectsEqual;

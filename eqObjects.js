@@ -160,3 +160,7 @@ const dcA = { d: ["2", 3], c: 1 };
 assertEqual(eqObjects(cdA,dcA),false);
 
 /// End of file
+
+
+
+module.exports = eqObjects;

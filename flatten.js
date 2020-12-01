@@ -105,3 +105,6 @@ assertArraysEqual(result2,expectedResult2);
 
 
 */
+
+
+module.exports = flatten;

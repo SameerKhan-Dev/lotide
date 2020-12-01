@@ -83,3 +83,5 @@ let result3 = findKey(object3, (x => x === "soccer"));
 
 assertEqual(result3,undefined);
 
+
+module.exports = findKey;

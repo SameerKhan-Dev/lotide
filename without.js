@@ -101,3 +101,4 @@ without(words,["lighthouse"]); // no need to capture return value for this test 
 assertArraysEqual(words,["hello", "world", "lighthouse"]); // should console.log assertion passed.
 
 
+module.exports = without;

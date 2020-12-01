@@ -90,3 +90,4 @@ const carSpeeds = map(carsObjectsArray, function(car) {
 
 assertArraysEqual(carSpeeds,[383,123,29,54]);
 
+module.exports = map;
