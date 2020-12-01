@@ -1,15 +1,44 @@
 
+//const head = require('../head');
+//const assertEqual = require('../assertEqual');
+
+const assert = require('chai').assert;
+
 const head = require('../head');
-const assertEqual = require('../assertEqual');
 
-// Writing Test Cases: // if both cases are true i.e assertion passed then the test case passed.
 
-assertEqual(head([5,6,7]),5);
+describe("#head", () => {
 
-assertEqual(head(["Hello","Lighthouse","Labs"]), "Hello");
+  it("returns 5 for [5,6,7]", () =>{
 
-// empty array test case
-assertEqual(head([]),undefined);
-// array with single element test case
-assertEqual(head([1]),1);
+    assert.strictEqual(head([5,6,7]),5);
+
+  });
+
+  it("returns '5' for ['5']", () => {
+    assert.strictEqual(head(['5']), '5'); 
+  });
+
+  it("returns hello for [Hello,Lighthouse,Labs]", () => {
+
+    assert.strictEqual(head(["Hello","Lighthouse","Labs"]), "Hello");
+
+  });
+  it("returns undefined for an empty array case", () => {
+
+    assert.strictEqual(head([]), undefined);
+
+  });
+  it("returns undefined for an array with only a single element", () => {
+
+    assert.strictEqual(head([1]), 1);
+
+  });
+
+
+
+
+
+});
+
 
